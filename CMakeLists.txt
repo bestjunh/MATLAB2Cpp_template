@@ -23,12 +23,13 @@ endif()
 list(APPEND SRC
 	test.cpp
 	# TODO : Add path to algorithm source here.
+	src/processor.h
 )
 	
 list(APPEND INCL
 	src
 	lib/STFT/cpp
-	lib/WAV
+	lib/WAV	
 )
 
 if(NOT MSVC)

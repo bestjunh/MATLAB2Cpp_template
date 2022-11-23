@@ -1,55 +1,56 @@
-#include "STFT.h"
+#ifdef _WIN32
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
+#endif
+
+
 #include "WAV.h"
 #include <string>
 #include <filesystem>
 /* Inlcude Algorithm source here */
+#include "processor.h"
 
-/* Set Parameter of Input */
-constexpr int n_channel = 6;
-constexpr int sr = 16000;
-constexpr int n_fft = 512;
-constexpr int n_hop = 128;
 
 int main() {
-  /* Define Algorithm Class here */
 
-  int length;
-  WAV input;
-  WAV output(n_channel, sr);
-  STFT process(n_channel, n_fft, n_hop);
+	int n_channel = 6;
+	int out_n_channel = 6;
+	int sr = 16000;
+	int n_fft = 1024;
+	int n_hop = 256;
+	int nTarget = 4;
 
-  short buf_in[n_channel * n_hop];
-  double** data;
-  short buf_out[n_channel * n_hop];
+	/* Define Algorithm Class here */
+	processor proc(n_channel, out_n_channel, sr, n_fft, n_hop);	
 
-  data = new double* [n_channel];
-  for (int i = 0; i < n_channel; i++) {
-    data[i] = new double[n_fft + 2];
-    memset(data[i], 0, sizeof(double) * (n_fft + 2));
-  }
+#ifdef _WIN32
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif
 
-  for (auto path : std::filesystem::directory_iterator{"../input"}) {
-    std::string i(path.path().string());
-    printf("processing : %s\n",i.c_str());
-    input.OpenFile(i.c_str());
-    i = "../output/"+ i.substr(9, i.length() - 9);
-    output.NewFile((i).c_str());
-    while (!input.IsEOF()) {
-      length = input.ReadUnit(buf_in, n_hop * n_channel);
-      process.stft(buf_in, length, data);
+	int length;
+	WAV input(n_channel, sr);
+	WAV output(n_channel, sr);
 
-      /* Run Process here */
+	short* buf_in = new short[n_channel * n_hop];
+	short* buf_out = new short[out_n_channel * n_hop];
 
-      process.istft(data, buf_out);
-      output.Append(buf_out, n_hop * n_channel);
-    }
-    output.Finish();
-    input.Finish();
-  }
+	std::string InputFileName = "F01_22GC010A_BUS";
+	input.OpenFile("../input/" + InputFileName + ".wav");
+	output.NewFile("../output/" + InputFileName + "_output.wav");	
 
-  for (int i = 0; i < n_channel; i++)
-    delete[] data[i];
-  delete[] data;
+	while (!input.IsEOF()) {
+		length = input.ReadUnit(buf_in, n_hop * n_channel);
+		/* Run Process here */
+		proc.process(buf_in, buf_out);
+		output.Append(buf_out, n_hop * out_n_channel);
 
-  return 0;
+	}
+	
+	output.Finish();
+	input.Finish();
+
+	delete[] buf_in;
+	delete[] buf_out;
+	
+	return 0;
 }

@@ -1,12 +1,8 @@
-# preprocessing_testbed
+# MATLAB2Cpp_template 1.0.0
 Testbed for audio signal preprocessing
 
 # Submodules
-
-```
-git clone --recursive
-```
-or  
+ 
 ```
 git submodule init
 git submodule update
