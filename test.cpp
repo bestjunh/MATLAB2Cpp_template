@@ -25,11 +25,12 @@ int main() {
 
 #ifdef _WIN32
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_crtBreakAlloc = 1286;
 #endif
 
 	int length;
 	WAV input(n_channel, sr);
-	WAV output(n_channel, sr);
+	WAV output(out_n_channel, sr);
 
 	short* buf_in = new short[n_channel * n_hop];
 	short* buf_out = new short[out_n_channel * n_hop];

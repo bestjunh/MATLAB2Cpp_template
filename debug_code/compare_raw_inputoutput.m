@@ -13,7 +13,7 @@ win = win./sqrt(sum(win.^2)/shift);
 
 [raw_matlab,fs1] = audioread('../input/F01_22GC010A_BUS.wav');
 [raw_cpp,fs2] = audioread('../output/F01_22GC010A_BUS_output.wav');
-nch = size(raw_matlab,2);
+nch = size(raw_cpp,2);
 
 
 for ch = 1:nch

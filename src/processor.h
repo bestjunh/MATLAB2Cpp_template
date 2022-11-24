@@ -47,7 +47,7 @@ processor::processor(int nch_, int out_nch_, int rate_, int frame_, int shift_)
 	
 
 	stft_in = new STFT(nch, frame, shift);
-	stft_out = new STFT(nch, frame, shift);
+	stft_out = new STFT(out_nch, frame, shift);
 	
 
 	data = new double* [nch];
