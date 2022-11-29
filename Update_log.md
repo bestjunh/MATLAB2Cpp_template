@@ -11,3 +11,6 @@ Fix error for output channel is not same as input channels
 
 ### 1.0.2
 Update all submodules
+
+### 1.0.3
+Fix debug code

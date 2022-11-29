@@ -4,7 +4,7 @@ clc;clear;close all;
 
 frame = 1024;
 shift = frame/4;
-nfft = 1024;
+nfft = frame;
 fs = 16000;
 nol = frame-shift;
 
@@ -20,8 +20,8 @@ for ch = 1:nch
     figure;
     subplot(3,1,1);plot(raw_matlab(:,ch));title('Matlab');
     subplot(3,1,2);plot(raw_cpp(:,ch));title('C');
-    tmpc = raw_cpp(256*3+1:end,1);
-    tmpm = raw_matlab(1:length(tmpc),1);
+    tmpc = raw_cpp(frame-shift+1:end,ch);
+    tmpm = raw_matlab(1:length(tmpc),ch);
     subplot(3,1,3);plot(tmpm-tmpc);title('Matlab-C');
 end
 

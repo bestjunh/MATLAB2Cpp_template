@@ -9,7 +9,7 @@ mat = audioread('S:\githubclone\OverIVA_RLS_VAD\output\vad.wav');
 cxx = audioread('../output/speaker4_1_output.wav');
 [~,nch] = size(cxx);
 
-tmpc = cxx(nshift*3+1:end,:);
+tmpc = cxx(nfft-nshift+1:end,:);
 tmpm = mat(1:length(tmpc),:);
 
 for ch = 1:nch
