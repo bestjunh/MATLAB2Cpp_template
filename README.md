@@ -1,4 +1,4 @@
-# MATLAB2Cpp_template 1.0.1
+# MATLAB2Cpp_template 1.0.2
 Testbed for audio signal preprocessing
 
 # Submodules
