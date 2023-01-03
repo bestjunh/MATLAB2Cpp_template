@@ -24,6 +24,7 @@ list(APPEND SRC
 	test.cpp
 	# TODO : Add path to algorithm source here.
 	src/processor.h
+	src/processor.cpp
 )
 	
 list(APPEND INCL
