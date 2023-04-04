@@ -6,7 +6,9 @@ set(LINKLIBS)
 set(COMPILE_OPTION)
 set(SRC)
 set(INCL)
-  
+
+include(lib/WAV/WAV.cmake)
+include(lib/STFT/cpp/STFT_cpp.cmake)  
 if(NOT MSVC)
 	list(APPEND LINKLIBS
 	# <math.h>
@@ -28,9 +30,7 @@ list(APPEND SRC
 )
 	
 list(APPEND INCL
-	src
-	lib/STFT/cpp
-	lib/WAV	
+	src	
 )
 
 if(NOT MSVC)
