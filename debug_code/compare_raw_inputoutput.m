@@ -1,5 +1,6 @@
 clc;clear;close all;
 
+addpath('C:\Users\Albert\Documents\MATLAB\Add-Ons\Collections\automatically arrange figure windows')
 % Check input output data with no process
 
 frame = 1024;
@@ -26,3 +27,5 @@ for ch = 1:nch
 end
 
 autoArrangeFigures()
+
+rmpath('C:\Users\Albert\Documents\MATLAB\Add-Ons\Collections\automatically arrange figure windows')
