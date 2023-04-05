@@ -64,10 +64,7 @@ void processor::process(short* buf_in, short* buf_out) {
 	stft_in->stft(buf_in, shift * nch, data);
 
 	// Process
-	for (int ch = 0; ch < nch; ch++) {
-		for (int k = 0; k < frame + 2; k++)
-			output_data[ch][k] = data[ch][k];
-	}
+	copy_to_output(data);
 
 	// ISTFT
 	stft_out->istft(output_data, buf_out);
@@ -83,4 +80,18 @@ void processor::process(short* buf_in, short* buf_out) {
 	}
 
 #endif
+}
+
+void processor::output_data_zero() {
+	for (int ch = 0; ch < nch; ch++) {
+		for (int k = 0; k < frame + 2; k++)
+			output_data[ch][k] = 0.0;
+	}
+}
+
+void processor::copy_to_output(double** input) {
+	for (int ch = 0; ch < nch; ch++) {
+		for (int k = 0; k < frame + 2; k++)
+			output_data[ch][k] = input[ch][k];
+	}
 }

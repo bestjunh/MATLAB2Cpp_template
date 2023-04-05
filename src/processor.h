@@ -31,7 +31,8 @@ public:
 	processor(int nch_, int out_nch_, int rate_, int frame_, int shift_);
 	 ~processor();
 	void process(short* buf_in, short* buf_out);
-
+	void output_data_zero();
+	void copy_to_output(double** input);
 
 
 };
