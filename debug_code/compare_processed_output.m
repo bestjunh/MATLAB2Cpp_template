@@ -15,9 +15,9 @@ tmpm = mat(1:length(tmpc),:);
 for ch = 1:nch
 figure;
 subplot(2,1,1)
-spectrogram(tmpc(:,ch),nfft,nol,nfft,fs,'yaxis');colormap jet;title('C++');caxis([-150 -70]);
+spectrogram(tmpc(:,ch),nfft,nol,nfft,fs,'yaxis');colormap jet;title('C++');clim([-150 -70]);
 subplot(2,1,2)
-spectrogram(tmpm(:,ch),nfft,nol,nfft,fs,'yaxis');colormap jet;title('MATLAB');caxis([-150 -70]);    
+spectrogram(tmpm(:,ch),nfft,nol,nfft,fs,'yaxis');colormap jet;title('MATLAB');clim([-150 -70]);    
 end
 
 

@@ -4,6 +4,7 @@
 #ifdef _DEBUG_TXT_	
 #include <fstream>
 #include <stdio.h>
+#include <string>
 #endif
 
 class processor {
