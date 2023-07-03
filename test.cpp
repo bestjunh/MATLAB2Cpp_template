@@ -17,8 +17,7 @@ int main() {
 	int out_n_channel = 6;
 	int sr = 16000;
 	int n_fft = 1024;
-	int n_hop = 256;
-	int nTarget = 4;
+	int n_hop = 256;	
 
 	/* Define Algorithm Class here */
 	processor proc(n_channel, out_n_channel, sr, n_fft, n_hop);	
